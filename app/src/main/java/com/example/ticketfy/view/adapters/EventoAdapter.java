@@ -78,7 +78,6 @@ public class EventoAdapter extends RecyclerView.Adapter<EventoAdapter.EventoView
         String nombreUbicacion = (ubicacion != null && ubicacion.nombre != null) ? ubicacion.nombre : "Ubicación desconocida";
         holder.textUbicacion.setText(nombreUbicacion);
 
-        // Ir directamente a DetalleConcierto con imagen, nombre, ubicación
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, DetalleConcierto.class);
             intent.putExtra("imagenEvento", imagenArtista);

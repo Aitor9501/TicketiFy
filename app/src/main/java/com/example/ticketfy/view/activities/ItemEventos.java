@@ -35,7 +35,7 @@ public class ItemEventos extends BaseActivity  {
 
         List<Evento> eventosDelArtista = db.eventoDao().obtenerPorArtista(idArtista);
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerEventosArtista); // Asegúrate que esté en el layout
+        RecyclerView recyclerView = findViewById(R.id.recyclerEventosArtista);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         EventoAdapter adapter = new EventoAdapter(this, eventosDelArtista, db);
         recyclerView.setAdapter(adapter);

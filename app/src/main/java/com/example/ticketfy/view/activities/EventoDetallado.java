@@ -38,7 +38,7 @@ public class EventoDetallado extends BaseActivity {
 
     private static final String API_KEY = "Ji0UBCiGG3lGojOWOCqMbv3H4nmtkds0";
 
-    private boolean mostrarSoloNacionales = true; // Cambia a false si quieres mostrar los internacionales
+    private boolean mostrarSoloNacionales = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +72,7 @@ public class EventoDetallado extends BaseActivity {
 
         recyclerView = findViewById(R.id.recyclerEventosDetallado);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new EventoApiAdapter(this, new ArrayList<>()); // se rellenará luego
+        adapter = new EventoApiAdapter(this, new ArrayList<>());
         recyclerView.setAdapter(adapter);
 
         if (artista != null) {

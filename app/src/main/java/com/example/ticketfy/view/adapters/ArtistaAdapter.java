@@ -34,7 +34,7 @@ public class ArtistaAdapter extends RecyclerView.Adapter<ArtistaAdapter.ViewHold
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.evento_item, parent, false); // Puedes usar el mismo layout
+        View view = LayoutInflater.from(context).inflate(R.layout.evento_item, parent, false);
         return new ViewHolder(view);
     }
 
@@ -43,7 +43,6 @@ public class ArtistaAdapter extends RecyclerView.Adapter<ArtistaAdapter.ViewHold
 
         Artista artista = artistas.get(position);
         holder.textNombre.setText(artista.nombre);
-        //holder.textUbicacion.setVisibility(View.GONE); // Ocultamos la ubicación
 
         if (artista.imagen != null && !artista.imagen.isEmpty()) {
             RequestOptions options = new RequestOptions().transform(new RoundedCorners(40));
@@ -55,17 +54,15 @@ public class ArtistaAdapter extends RecyclerView.Adapter<ArtistaAdapter.ViewHold
             holder.imgEvento.setImageResource(R.drawable.placeholder);
         }
 
-        // ✅ Click en la imagen (o todo el ítem) lleva a InfoArtistaFestival
         holder.imgEvento.setOnClickListener(v -> {
             Intent intent = new Intent(context, InfoArtistaFestival.class);
-            intent.putExtra("idArtista", artista.idArtista); // 👈 importante
+            intent.putExtra("idArtista", artista.idArtista);
             context.startActivity(intent);
         });
 
-        // También puedes permitir que se abra si se pulsa todo el itemView:
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, InfoArtistaFestival.class);
-            intent.putExtra("idArtista", artista.idArtista); // 👈 Para acceder a la info del artista
+            intent.putExtra("idArtista", artista.idArtista);
             context.startActivity(intent);
         });
         Animation animation = AnimationUtils.loadAnimation(holder.itemView.getContext(), R.anim.imagen_menu_animacion);

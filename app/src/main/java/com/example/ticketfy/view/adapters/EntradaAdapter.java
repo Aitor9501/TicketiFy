@@ -49,16 +49,33 @@ public class EntradaAdapter extends RecyclerView.Adapter<EntradaAdapter.EntradaV
 
         TextView nombreEvento;
         TextView fechaEvento;
+        TextView ubicacionEvento;
+        TextView codigoEntrada;
 
         public EntradaViewHolder(@NonNull View itemView) {
             super(itemView);
             nombreEvento = itemView.findViewById(R.id.textNombreEvento);
             fechaEvento = itemView.findViewById(R.id.textFecha);
+            ubicacionEvento = itemView.findViewById(R.id.textUbicacion);
+            codigoEntrada = itemView.findViewById(R.id.textCodigo);
         }
 
         public void bind(Entrada entrada, OnEntradaClickListener listener) {
             nombreEvento.setText(entrada.nombreEvento);
             fechaEvento.setText("Fecha: " + entrada.fecha);
+
+            if (entrada.ubicacion != null && !entrada.ubicacion.isEmpty()) {
+                ubicacionEvento.setText("Ubicación: " + entrada.ubicacion);
+            } else {
+                ubicacionEvento.setText("Ubicación: desconocida");
+            }
+
+            if (entrada.codigoEntrada != null && !entrada.codigoEntrada.isEmpty()) {
+                codigoEntrada.setText("Código: #" + entrada.codigoEntrada);
+            } else {
+                codigoEntrada.setText("Código: #000000");
+            }
+
             itemView.setOnClickListener(v -> listener.onEntradaClick(entrada));
         }
     }

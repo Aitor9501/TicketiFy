@@ -96,10 +96,7 @@ public class Loggin extends AppCompatActivity {
             String idUsuarioEmail = editEmail.getText().toString().trim();
             String password = editPassword.getText().toString().trim();
 
-            if (idUsuarioEmail.isEmpty() || password.isEmpty()) {
-                Toast.makeText(Loggin.this, "Introduce el correo y la contraseña", Toast.LENGTH_SHORT).show();
-                return;
-            }
+
 
             AppDatabase db = Room.databaseBuilder(getApplicationContext(),
                             AppDatabase.class, "ticketify-db")

@@ -51,6 +51,10 @@ public class MisEntradas extends BaseActivity  {
             adapter = new EntradaAdapter(listaEntradas, entrada -> {
                 Intent intent = new Intent(MisEntradas.this, EntradaEvento.class);
                 intent.putExtra("idEvento", entrada.idEvento);
+                intent.putExtra("nombreEvento", entrada.nombreEvento);
+                intent.putExtra("fecha", entrada.fecha);
+                intent.putExtra("ubicacion", entrada.ubicacion);
+                intent.putExtra("codigoEntrada", entrada.codigoEntrada);
                 startActivity(intent);
             });
             recyclerView.setAdapter(adapter);
@@ -68,7 +72,7 @@ public class MisEntradas extends BaseActivity  {
         TextView botonAceptar = vistaDialogo.findViewById(R.id.botonAceptarEntradas);
         botonAceptar.setOnClickListener(v -> {
             dialog.dismiss();
-            finish(); // Cierra esta pantalla
+            finish();
         });
 
         dialog.show();

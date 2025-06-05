@@ -24,6 +24,7 @@ import com.example.ticketfy.data.db.AppDatabase;
 import com.example.ticketfy.data.db.entities.Artista;
 import com.example.ticketfy.data.db.entities.Entrada;
 import com.example.ticketfy.data.db.entities.Evento;
+import com.example.ticketfy.data.db.entities.Ubicacion;
 import com.example.ticketfy.view.adapters.ScrollHorizontalAdapter;
 import com.google.android.material.tabs.TabLayout;
 
@@ -74,10 +75,10 @@ public class DetalleConcierto extends BaseActivity  {
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
                     if (result.getResultCode() == RESULT_OK) {
-                        new AlertDialog.Builder(DetalleConcierto.this)
+                        AlertDialog dialog = new AlertDialog.Builder(DetalleConcierto.this)
                                 .setTitle("Entrada guardada")
                                 .setMessage("Tu entrada ha sido registrada correctamente.")
-                                .setPositiveButton("Ver entrada", (dialog, which) -> {
+                                .setPositiveButton("Ver entrada", (dialogInterface, which) -> {
 
                                     SharedPreferences prefs = getSharedPreferences("TicketifyPrefs", MODE_PRIVATE);
                                     String email = prefs.getString("emailUsuario", null);
@@ -96,15 +97,25 @@ public class DetalleConcierto extends BaseActivity  {
                                                 .allowMainThreadQueries()
                                                 .build();
 
-                                        if ((fecha == null || fecha.isEmpty()) || (ubicacion == null || ubicacion.isEmpty())) {
-                                            Evento evento = db.eventoDao().obtenerPorId(idEvento);
-                                            if (evento != null) {
-                                                if (fecha == null || fecha.isEmpty()) fecha = evento.fecha;
+                                        Evento evento = db.eventoDao().obtenerPorId(idEvento);
+                                        String fechaFinal = fecha;
+                                        String ubicacionFinal = ubicacion;
 
-                                                if (ubicacion == null || ubicacion.isEmpty()) {
-                                                    if (evento.idUbicacion > 0) {
-                                                        ubicacion = db.ubicacionDao().obtenerPorId(evento.idUbicacion).nombre;
+                                        if (evento != null) {
+                                            if (fecha == null || fecha.isEmpty()) {
+                                                fechaFinal = evento.fecha;
+                                            }
+
+                                            if (ubicacion == null || ubicacion.isEmpty()) {
+                                                if (evento.idUbicacion > 0) {
+                                                    Ubicacion ubi = db.ubicacionDao().obtenerPorId(evento.idUbicacion);
+                                                    if (ubi != null && ubi.nombre != null && !ubi.nombre.isEmpty()) {
+                                                        ubicacionFinal = ubi.nombre;
+                                                    } else {
+                                                        ubicacionFinal = "Ubicación desconocida";
                                                     }
+                                                } else {
+                                                    ubicacionFinal = "Ubicación no asignada";
                                                 }
                                             }
                                         }
@@ -113,22 +124,28 @@ public class DetalleConcierto extends BaseActivity  {
                                                 idEvento,
                                                 precio,
                                                 nombreEvento,
-                                                fecha,
-                                                ubicacion,
+                                                fechaFinal,
+                                                ubicacionFinal,
                                                 codigoEntrada,
                                                 email
                                         );
                                         db.entradaDao().insertar(entrada);
-                                    }
 
-                                    Intent intent = new Intent(DetalleConcierto.this, EntradaEvento.class);
-                                    intent.putExtra("nombreEvento", nombreEvento);
-                                    intent.putExtra("fecha", fecha);
-                                    intent.putExtra("ubicacion", ubicacion);
-                                    startActivity(intent);
+                                        Intent intent = new Intent(DetalleConcierto.this, EntradaEvento.class);
+                                        intent.putExtra("nombreEvento", nombreEvento);
+                                        intent.putExtra("fecha", fechaFinal);
+                                        intent.putExtra("ubicacion", ubicacionFinal);
+                                        startActivity(intent);
+                                    }
                                 })
                                 .setNegativeButton("Cerrar", null)
-                                .show();
+                                .create();
+
+                        dialog.show();
+
+                        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.granate));
+                        dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.granate));
+
                     }
                 });
 
@@ -146,7 +163,6 @@ public class DetalleConcierto extends BaseActivity  {
             RecyclerView recyclerEventos = findViewById(R.id.recyclerEventosHorizontales);
             recyclerEventos.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
-// Obtener eventos del artista desde tu base de datos
             AppDatabase db = Room.databaseBuilder(getApplicationContext(),
                             AppDatabase.class, "ticketify-db")
                     .allowMainThreadQueries()

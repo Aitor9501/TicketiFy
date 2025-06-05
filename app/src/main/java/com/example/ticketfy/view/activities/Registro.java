@@ -25,11 +25,10 @@ public class Registro extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registro_menu);
 
-        // Referencias a los campos del layout
         editNombre = findViewById(R.id.editTextNombre);
         editEmail = findViewById(R.id.editTextEmail);
         editContrasena = findViewById(R.id.editTextPassword);
-        editRepetirContrasena = findViewById(R.id.editTextRepeatPassword); // este debe estar en el XML también
+        editRepetirContrasena = findViewById(R.id.editTextRepeatPassword);
         botonRegistrar = findViewById(R.id.button);
 
         botonRegistrar.setOnClickListener(v -> {
@@ -52,8 +51,7 @@ public class Registro extends AppCompatActivity {
                 return;
             }
 
-            // Insertar el usuario en Room
-            // Borrar base de datos (solo si has añadido nuevas entidades o campos)
+
 
             AppDatabase db = Room.databaseBuilder(getApplicationContext(),
                             AppDatabase.class, "ticketify-db")

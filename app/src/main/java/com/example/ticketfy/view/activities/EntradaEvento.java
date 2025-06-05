@@ -6,7 +6,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
 import com.example.ticketfy.R;
@@ -29,20 +28,21 @@ public class EntradaEvento extends BaseActivity {
         TextView nombre = findViewById(R.id.textViewNombreEvento);
         TextView fecha = findViewById(R.id.textViewFecha);
         TextView lugar = findViewById(R.id.textViewUbicacion);
+        TextView codigo = findViewById(R.id.textViewCodigo);
         ImageView qr = findViewById(R.id.imageViewQR);
+        Button volver = findViewById(R.id.btnVolver);
 
         int idEvento = getIntent().getIntExtra("idEvento", -1);
-
         String nombreEvento = getIntent().getStringExtra("nombreEvento");
-        if (nombreEvento == null || nombreEvento.isEmpty()) nombreEvento = "Evento desconocido";
-
         String fechaEvento = getIntent().getStringExtra("fecha");
-        if (fechaEvento == null || fechaEvento.isEmpty()) fechaEvento = "Fecha desconocida";
-
         String ubicacionEvento = getIntent().getStringExtra("ubicacion");
-        if (ubicacionEvento == null || ubicacionEvento.isEmpty()) ubicacionEvento = "Ubicación desconocida";
+        String codigoEntrada = getIntent().getStringExtra("codigoEntrada");
 
-        // Intentar mejorar la información si se puede acceder por idEvento
+        if (nombreEvento == null || nombreEvento.isEmpty()) nombreEvento = "Evento desconocido";
+        if (fechaEvento == null || fechaEvento.isEmpty()) fechaEvento = "Fecha desconocida";
+        if (ubicacionEvento == null || ubicacionEvento.isEmpty()) ubicacionEvento = "Ubicación desconocida";
+        if (codigoEntrada == null || codigoEntrada.isEmpty()) codigoEntrada = "#000000";
+
         if (idEvento != -1) {
             AppDatabase db = Room.databaseBuilder(getApplicationContext(),
                             AppDatabase.class, "ticketify-db")
@@ -51,16 +51,19 @@ public class EntradaEvento extends BaseActivity {
 
             Evento evento = db.eventoDao().obtenerPorId(idEvento);
             if (evento != null) {
-                if (fechaEvento.equals("Fecha desconocida") && evento.fecha != null) {
+                if (fechaEvento.equals("Fecha desconocida") && evento.fecha != null)
                     fechaEvento = evento.fecha;
-                }
+
                 if (nombreEvento.equals("Evento desconocido")) {
                     Artista artista = db.artistaDao().obtenerPorId(evento.idArtista);
-                    if (artista != null && artista.nombre != null) nombreEvento = artista.nombre;
+                    if (artista != null && artista.nombre != null)
+                        nombreEvento = artista.nombre;
                 }
+
                 if (ubicacionEvento.equals("Ubicación desconocida")) {
                     Ubicacion ubicacion = db.ubicacionDao().obtenerPorId(evento.idUbicacion);
-                    if (ubicacion != null && ubicacion.nombre != null) ubicacionEvento = ubicacion.nombre;
+                    if (ubicacion != null && ubicacion.nombre != null)
+                        ubicacionEvento = ubicacion.nombre;
                 }
             }
         }
@@ -68,16 +71,15 @@ public class EntradaEvento extends BaseActivity {
         nombre.setText(nombreEvento);
         fecha.setText("Fecha: " + fechaEvento);
         lugar.setText("Lugar: " + ubicacionEvento);
+        codigo.setText("Código: " + codigoEntrada);
 
-        // Generar contenido QR
-        String contenidoQR = "Entrada|" + nombreEvento + "|" + ubicacionEvento;
+        // Generar el código QR
+        String contenidoQR = "Entrada|" + nombreEvento + "|" + ubicacionEvento + "|" + codigoEntrada;
         Bitmap qrBitmap = generarCodigoQR(contenidoQR, 400, 400);
-
         if (qrBitmap != null) {
             qr.setImageBitmap(qrBitmap);
         }
 
-        Button volver = findViewById(R.id.btnVolver);
         volver.setOnClickListener(v -> finish());
     }
 

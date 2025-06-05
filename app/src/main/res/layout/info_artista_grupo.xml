@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     android:background="#FDF6EC">
 
-    <!-- Toolbar personalizada -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -17,21 +16,17 @@
         android:theme="@style/ThemeOverlay.AppCompat.Light"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        >
+        app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
-            android:id="@+id/layout_toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
             android:gravity="center_vertical"
             android:paddingStart="12dp"
-            android:paddingEnd="12dp"
-            >
+            android:paddingEnd="12dp">
 
             <ImageView
-                android:id="@+id/logo_toolbar"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_marginStart="16dp"
@@ -52,211 +47,209 @@
         </LinearLayout>
     </androidx.appcompat.widget.Toolbar>
 
-    <!-- Scroll principal -->
     <ScrollView
-    android:layout_width="0dp"
-    android:layout_height="0dp"
-    android:fillViewport="true"
-    app:layout_constraintTop_toBottomOf="@id/toolbar"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent">
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <!-- 🌌 Parte superior con fondo degradado -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/fondo_color"
-            android:padding="16dp"
             android:orientation="vertical">
 
-            <!-- Tarjeta sobre fondo degradado -->
-            <com.google.android.material.card.MaterialCardView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="4dp"
-                android:layout_marginBottom="24dp"
-                android:backgroundTint="@android:color/white">
+                android:background="@drawable/fondo_color"
+                android:padding="16dp"
+                android:orientation="vertical">
 
-                <LinearLayout
+                <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="16dp">
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="4dp"
+                    android:layout_marginBottom="24dp"
+                    android:backgroundTint="@android:color/white">
 
-                    <ImageButton
-                        android:id="@+id/btnFavorito"
-                        android:layout_width="36dp"
-                        android:layout_height="37dp"
-                        android:layout_gravity="end"
-                        android:layout_marginTop="6dp"
-                        android:background="@android:color/transparent"
-                        android:contentDescription="Marcar como favorito"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/microfono" />
-
-                    <RelativeLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="200dp">
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
 
-                        <com.google.android.material.imageview.ShapeableImageView
-                            android:id="@+id/imagenEvento"
+                        <ImageButton
+                            android:id="@+id/btnFavorito"
+                            android:layout_width="36dp"
+                            android:layout_height="37dp"
+                            android:layout_gravity="end"
+                            android:layout_marginTop="6dp"
+                            android:background="@android:color/transparent"
+                            android:contentDescription="Marcar como favorito"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/microfono" />
+
+                        <RelativeLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/fondoconcierto"
-                            app:shapeAppearanceOverlay="@style/RoundedCornersImage" />
-                    </RelativeLayout>
+                            android:layout_height="200dp">
+
+                            <com.google.android.material.imageview.ShapeableImageView
+                                android:id="@+id/imagenEvento"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/fondoconcierto"
+                                app:shapeAppearanceOverlay="@style/RoundedCornersImage" />
+                        </RelativeLayout>
+
+                        <TextView
+                            android:id="@+id/textView3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:gravity="center"
+                            android:text="Nombre Del Artista"
+                            android:textColor="#A70F2E"
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
+
+                        <Button
+                            android:id="@+id/button3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Eventos"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="16dp"
+                            android:backgroundTint="#D32F2F"
+                            android:textColor="@android:color/white" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#FDF6EC"
+                android:padding="16dp">
+
+                <Button
+                    android:id="@+id/btnSpotify"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Escuchar en Spotify"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="12dp"
+                    android:backgroundTint="#1DB954"
+                    android:textColor="@android:color/white" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#910606"
+                    android:layout_marginBottom="8dp" />
+
+                <TextView
+                    android:id="@+id/textViewTituloBio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Biografía"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#910606"
+                    android:gravity="center" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#910606"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="16dp" />
+
+                <TextView
+                    android:id="@+id/textViewBio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Cargando biografía..."
+                    android:textColor="#444444"
+                    android:textSize="15sp"
+                    android:lineSpacingExtra="6dp"
+                    android:justificationMode="inter_word" />
+
+                <TextView
+                    android:id="@+id/textViewFaq"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Preguntas Frecuentes"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#910606"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginBottom="8dp" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="2dp"
+                    android:layout_marginBottom="12dp">
 
                     <TextView
-                        android:id="@+id/textView3"
+                        android:id="@+id/pregunta1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="NombreArtista"
-                        android:textSize="22sp"
+                        android:text="• ¿Qué es TicketiFy?"
                         android:textStyle="bold"
-                        android:textColor="#FFFFFF"
-                        android:gravity="center"
-                        android:layout_marginTop="16dp" />
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/button3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Eventos"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="16dp"
-                        app:cornerRadius="24dp"
-                        android:backgroundTint="#D32F2F"
                         android:textColor="@android:color/white"
-                        android:onClick="mostrarEventoDetallado" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-        </LinearLayout>
-
-        <!-- ☁ Parte inferior con fondo beige -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="#FDF6EC"
-            android:padding="16dp">
-
-            <!-- Biografía con doble línea -->
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="#910606"
-                android:layout_marginBottom="8dp" />
-
-            <TextView
-                android:id="@+id/textViewTituloBio"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Biografía"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="#910606"
-                android:gravity="center" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="#910606"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="16dp" />
-
-            <TextView
-                android:id="@+id/textViewBio"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Cargando biografía..."
-                android:textColor="#444444"
-                android:textSize="15sp"
-                android:lineSpacingExtra="6dp"
-                android:justificationMode="inter_word" />
-
-            <!-- Preguntas frecuentes -->
-            <TextView
-                android:id="@+id/textViewFaq"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Preguntas Frecuentes"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="#910606"
-                android:layout_marginTop="32dp"
-                android:layout_marginBottom="8dp" />
-
-            <!-- Pregunta 1 -->
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="2dp"
-                android:layout_marginBottom="12dp">
+                        android:background="#910606"
+                        android:padding="12dp" />
+                </com.google.android.material.card.MaterialCardView>
 
                 <TextView
-                    android:id="@+id/pregunta1"
+                    android:id="@+id/respuesta1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="• ¿Qué es TicketiFy?"
-                    android:textStyle="bold"
-                    android:textColor="@android:color/white"
-                    android:background="#910606"
+                    android:text="TicketiFy es una plataforma para descubrir y comprar entradas de eventos musicales en España."
+                    android:visibility="gone"
+                    android:textColor="#444444"
+                    android:background="#FDF6EC"
                     android:padding="12dp"
-                    android:onClick="mostrarRespuesta1" />
-            </com.google.android.material.card.MaterialCardView>
+                    android:layout_marginBottom="12dp" />
 
-            <TextView
-                android:id="@+id/respuesta1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TicketiFy es una plataforma para descubrir y comprar entradas de eventos musicales en España."
-                android:visibility="gone"
-                android:textColor="#444444"
-                android:background="#FDF6EC"
-                android:padding="12dp"
-                android:layout_marginBottom="12dp" />
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="2dp"
+                    android:layout_marginBottom="12dp">
 
-            <!-- Pregunta 2 -->
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="2dp"
-                android:layout_marginBottom="12dp">
+                    <TextView
+                        android:id="@+id/pregunta2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="• ¿Cómo puedo comprar entradas?"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/white"
+                        android:background="#910606"
+                        android:padding="12dp" />
+                </com.google.android.material.card.MaterialCardView>
 
                 <TextView
-                    android:id="@+id/pregunta2"
+                    android:id="@+id/respuesta2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="• ¿Cómo puedo comprar entradas?"
-                    android:textStyle="bold"
-                    android:textColor="@android:color/white"
-                    android:background="#910606"
+                    android:text="Puedes comprarlas desde la sección Eventos o pulsando el botón 'Eventos' en esta pantalla."
+                    android:visibility="gone"
+                    android:textColor="#444444"
+                    android:background="#FDF6EC"
                     android:padding="12dp"
-                    android:onClick="mostrarRespuesta2" />
-            </com.google.android.material.card.MaterialCardView>
+                    android:layout_marginBottom="12dp" />
 
-            <TextView
-                android:id="@+id/respuesta2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Puedes comprarlas desde la sección Eventos o pulsando el botón 'Eventos' en esta pantalla."
-                android:visibility="gone"
-                android:textColor="#444444"
-                android:background="#FDF6EC"
-                android:padding="12dp"
-                android:layout_marginBottom="12dp" />
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
-</ScrollView>
-
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

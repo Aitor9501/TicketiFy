@@ -45,12 +45,10 @@ public class EventoApiAdapter extends RecyclerView.Adapter<EventoApiAdapter.View
         EventoApi evento = eventosApi.get(position);
         if (evento == null) return;
 
-        // Mostrar nombre del evento
         holder.textNombre.setText(evento.nombreEvento);
         holder.textUbicacion.setText(evento.nombreUbicacion);
         holder.textFecha.setText(evento.fecha);
 
-        // Cargar imagen con Glide
         RequestOptions options = new RequestOptions()
                 .transform(new RoundedCorners(30))
                 .placeholder(R.drawable.placeholder)
@@ -61,7 +59,6 @@ public class EventoApiAdapter extends RecyclerView.Adapter<EventoApiAdapter.View
                 .apply(options)
                 .into(holder.imageEvento);
 
-        // Acción al pulsar en el item
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, DetalleConcierto.class);
             intent.putExtra("imagenEvento", evento.imagenUrl);
@@ -75,7 +72,6 @@ public class EventoApiAdapter extends RecyclerView.Adapter<EventoApiAdapter.View
             Log.d("URL_EVENTO", "URL de compra: " + urlCompra);
         });
 
-        // Animación
         Animation animation = AnimationUtils.loadAnimation(holder.itemView.getContext(), R.anim.imagen_menu_animacion);
         holder.itemView.startAnimation(animation);
     }

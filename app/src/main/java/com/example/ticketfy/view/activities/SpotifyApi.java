@@ -20,8 +20,8 @@ import java.util.Map;
 
 public class SpotifyApi {
 
-    private static final String CLIENT_ID = "416a0cf40a574d7b92b5d5994c29910c"; // Aquí tu Client ID
-    private static final String CLIENT_SECRET = "7d358d9404054c97b3699eff121760e2"; // Aquí tu Client Secret
+    private static final String CLIENT_ID = "416a0cf40a574d7b92b5d5994c29910c";
+    private static final String CLIENT_SECRET = "7d358d9404054c97b3699eff121760e2";
     private static final String PREFS_NAME = "SpotifyPrefs";
     private static final String TOKEN_KEY = "access_token";
     private static final String EXPIRATION_KEY = "expires_at";
@@ -49,7 +49,6 @@ public class SpotifyApi {
         }
     }
 
-    // Método público para buscar artista (se asegura que el token es válido)
     public void buscarArtistaSpotify(String nombreArtista, SpotifyCallback callback) {
         if (accessToken == null) {
             obtenerAccessToken(token -> buscarArtistaSpotify(nombreArtista, callback));
@@ -83,7 +82,6 @@ public class SpotifyApi {
         queue.add(request);
     }
 
-    // Método para obtener token, renovarlo si es necesario
     private void obtenerAccessToken(SpotifyTokenCallback callback) {
         String url = "https://accounts.spotify.com/api/token";
 
@@ -95,14 +93,13 @@ public class SpotifyApi {
                         int expiresIn = jsonResponse.getInt("expires_in");
                         long newExpiresAt = (System.currentTimeMillis() / 1000) + expiresIn;
 
-                        // Obtener las preferencias y guardar el token
                         SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
                         prefs.edit()
                                 .putString(TOKEN_KEY, newToken)
                                 .putLong(EXPIRATION_KEY, newExpiresAt)
                                 .apply();
 
-                        accessToken = newToken; // Actualizar la variable
+                        accessToken = newToken;
                         callback.onTokenReceived(newToken);
                     } catch (Exception e) {
                         Log.e("SPOTIFY", "Error procesando token", e);
@@ -152,12 +149,10 @@ public class SpotifyApi {
         void onResult(String resumen);
     }
 
-    // Callback para obtener token
     public interface SpotifyTokenCallback {
         void onTokenReceived(String token);
     }
 
-    // Callback para buscar artista
     public interface SpotifyCallback {
         void onResult(JSONObject artista);
         void onError(String error);

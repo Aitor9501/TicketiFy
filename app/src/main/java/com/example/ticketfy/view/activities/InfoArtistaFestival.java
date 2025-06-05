@@ -10,7 +10,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
+import android.net.Uri;
+import android.widget.Button;
 import androidx.appcompat.widget.Toolbar;
 import androidx.room.Room;
 
@@ -30,7 +32,7 @@ public class InfoArtistaFestival extends BaseActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.info_artista_grupo); // este es el que mostraste en XML
+        setContentView(R.layout.info_artista_grupo);
         configurarCabecera();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -62,7 +64,6 @@ public class InfoArtistaFestival extends BaseActivity  {
         }
         TextView textViewBio;
 
-        // Imagen
         ImageView imagenEvento = findViewById(R.id.imagenEvento);
         if (artista != null && artista.imagen != null) {
             Glide.with(this)
@@ -71,7 +72,6 @@ public class InfoArtistaFestival extends BaseActivity  {
                     .into(imagenEvento);
         }
 
-        // Nombre artista
         TextView nombreArtista = findViewById(R.id.textView3);
         if (artista != null) nombreArtista.setText(artista.nombre);
         SpotifyApi spoty = new SpotifyApi(this);
@@ -83,8 +83,22 @@ public class InfoArtistaFestival extends BaseActivity  {
                 try {
                     String nombreSpotify = artistaSpotify.optString("name");
                     int seguidores = artistaSpotify.optJSONObject("followers").optInt("total");
+                    String spotifyId = artistaSpotify.optString("id");
 
-                    // Procesar géneros
+                    Button btnSpotify = findViewById(R.id.btnSpotify);
+                    btnSpotify.setOnClickListener(view -> {
+                        if (spotifyId != null && !spotifyId.isEmpty()) {
+                            String url = "https://open.spotify.com/artist/" + spotifyId;
+                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                            intent.setPackage("com.spotify.music");
+                            try {
+                                startActivity(intent);
+                            } catch (Exception e) {
+                                // Si no está instalado Spotify, abre en navegador
+                                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+                            }
+                        }
+                    });
                     JSONArray genresArray = artistaSpotify.optJSONArray("genres");
                     String generos;
                     if (genresArray != null && genresArray.length() > 0) {
@@ -111,7 +125,6 @@ public class InfoArtistaFestival extends BaseActivity  {
                                 runOnUiThread(() -> textViewBio.setText(bioFinal));
                             },
                             error -> {
-                                // Si falla Wikipedia, solo mostramos Spotify
                                 runOnUiThread(() -> textViewBio.setText(resumenSpotify));
                             });
 
@@ -129,7 +142,6 @@ public class InfoArtistaFestival extends BaseActivity  {
             }
         });
 
-        // Botón a sus eventos
         Button botonEventos = findViewById(R.id.button3);
         botonEventos.setOnClickListener(v -> {
             Intent intent = new Intent(this, EventoDetallado.class);
@@ -137,7 +149,6 @@ public class InfoArtistaFestival extends BaseActivity  {
             startActivity(intent);
         });
 
-        // Preguntas frecuentes
         TextView pregunta1 = findViewById(R.id.pregunta1);
         TextView respuesta1 = findViewById(R.id.respuesta1);
         pregunta1.setOnClickListener(v -> {

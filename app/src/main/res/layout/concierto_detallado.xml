@@ -271,7 +271,6 @@
             android:scrollbars="none"
             android:orientation="horizontal"/>
 
-        <!-- Sección 3 -->
         <TextView
             android:id="@+id/section3"
             android:layout_width="match_parent"
@@ -282,7 +281,6 @@
             android:paddingTop="16dp"
             android:paddingBottom="8dp"/>
 
-        <!-- Pregunta 1 -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -313,7 +311,6 @@
             android:padding="12dp"
             android:layout_marginBottom="12dp" />
 
-        <!-- Pregunta 2 -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -373,7 +370,6 @@
             android:padding="12dp"
             android:layout_marginBottom="12dp" />
 
-        <!-- Pregunta 4 -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -404,7 +400,6 @@
             android:padding="12dp"
             android:layout_marginBottom="12dp" />
 
-        <!-- Pregunta 5 -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
