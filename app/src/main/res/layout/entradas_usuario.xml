@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <!-- Toolbar personalizada -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:elevation="0dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Light"
+        android:background="@drawable/marco_cabecera"
+        app:title="">
+
+        <LinearLayout
+            android:id="@+id/layout_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp">
+
+            <ImageView
+                android:id="@+id/logo_toolbar"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="16dp"
+                android:src="@drawable/logoimagen"
+                android:contentDescription="Logo" />
+
+            <TextView
+                android:id="@+id/tituloToolbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="Mis entradas"
+                android:textSize="20sp"
+                android:textColor="#910606"
+                android:fontFamily="@font/montserrat_bold"
+                android:textStyle="bold"
+                android:textAllCaps="true" />
+        </LinearLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <!-- Texto por si no hay entradas -->
+    <TextView
+        android:id="@+id/textoSinEntradas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No tienes ninguna entrada registrada aún"
+        android:textAlignment="center"
+        android:padding="16dp"
+        android:visibility="gone"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="16sp" />
+
+    <!-- RecyclerView para las entradas -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerEntradas"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="12dp" />
+
+</LinearLayout>

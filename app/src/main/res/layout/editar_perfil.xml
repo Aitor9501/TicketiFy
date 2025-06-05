@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1A0000">
+
+    <!-- CABECERA -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@drawable/marco_cabecera"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Light">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingStart="16dp">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/logoimagen"
+                android:contentDescription="Logo" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="TicketiFy"
+                android:textAllCaps="true"
+                android:textColor="#950E29"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <!-- CONTENIDO -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:padding="24dp"
+        android:background="@drawable/fondo_color">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:scaleType="centerCrop"
+                android:clipToOutline="true" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tus Datos"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Actualiza tus datos"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:layout_marginBottom="24dp" />
+
+            <!-- Campo: Contraseña actual -->
+
+
+            <!-- Campo: Nombre -->
+            <EditText
+                android:id="@+id/editNombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:background="@drawable/edit_text_shadow"
+                android:textColor="#000000"
+                android:textColorHint="#FFFFFF"
+                android:textSize="16sp"
+                android:layout_marginBottom="16dp"/>
+
+            <EditText
+                android:id="@+id/editEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:background="@drawable/edit_text_shadow"
+                android:textColor="#000000"
+                android:textColorHint="#FFFFFF"
+                android:textSize="16sp"
+                android:layout_marginBottom="16dp"/>
+
+            <EditText
+                android:id="@+id/editContrasena"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nueva contraseña (opcional)"
+                android:inputType="textPassword"
+                android:background="@drawable/edit_text_shadow"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#000000"
+                android:textSize="16sp"
+                android:layout_marginBottom="24dp"/>
+
+            <EditText
+                android:id="@+id/editContrasenaActual"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/edit_text_shadow"
+                android:hint="Contraseña actual"
+                android:textColorHint="#000000"
+                android:inputType="textPassword"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
+
+            <!-- Botón Guardar -->
+            <Button
+                android:id="@+id/btnGuardar"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="GUARDAR CAMBIOS"
+                android:textColor="#1A0000"
+                android:textStyle="bold"
+                android:textAllCaps="true"
+                android:background="@drawable/boton_transparente_borde"
+                android:elevation="2dp"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,19 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/lupavector"
+        android:iconTint="#C01313"
+        android:title="Buscar"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="always|collapseActionView" />
+
+    <item
+        android:id="@+id/action_perfil"
+        android:iconTint="#BE1415"
+
+        android:icon="@drawable/perfilicono"
+        android:title="Perfil"
+        app:showAsAction="always" />
+</menu>
